@@ -68,7 +68,7 @@ local servers = {
   "bashls",
   "html",
   "cssls",
-  "tsserver",
+  "ts_ls",
   "tailwindcss",
   "clangd",
   "pyright",
