@@ -13,7 +13,7 @@ opt.linebreak = true -- Break lines in spaces not in the middle of a word
 opt.nrformats:append "alpha" -- increments letters sequences as well with <c-a>
 opt.relativenumber = true
 opt.scrolloff = 8 -- Lines of context
-opt.shortmess:append { W = true, I = true, c = true, C = true }
+opt.shortmess:append { W = true, I = true, c = true, C = true, S = true }
 opt.showmode = false -- Don't show mode
 -- opt.showtabline = 0
 opt.timeoutlen = 300

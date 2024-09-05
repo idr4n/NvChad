@@ -21,12 +21,13 @@ M.ui = {
 
     -- stylua: ignore
     -- order = { "mode", "filetype", "hl_status", "file", "diagnostics", "git", "%=", "search_count", "lsp_msg", "%=", "hl_stealth", "charcode", "LSP", "position", "cwd" }, -- custom status
-    order = { "mode", "filetype", "hl_status", "file", "diagnostics", "%=", "search_count", "lsp_msg", "%=", "word_count", "hl_stealth", "charcode", "LSP", "position", "git", "cwd" }, -- custom status
+    order = { "mode", "filetype", "hl_stealth", "file", "lsp_diagnostics", "%=", "search_count", "lsp_msg", "%=", "hl_stealth", "word_count", "charcode", "LSP", "position", "git", "git_hunks", "cwd" }, -- custom status
 
     modules = {
       -- mode = st.mode,
       mode = st.color_mode,
       filetype = st.filetype,
+      lsp_diagnostics = st.LSP_Diagnostics,
       cwd = st.cwd,
       hl_status = function()
         return "%#StatusLine#"
@@ -46,14 +47,13 @@ M.ui = {
       LSP = function()
         return _G.show_more_info and st.lsp_running() or ""
       end,
-      -- git = function()
-      --   return _G.show_more_info and st.git() or ""
-      -- end,
-      git = st.git,
+      git = function()
+        return _G.show_more_info and st.git() or ""
+      end,
       word_count = st.get_words,
-      -- hunks = function()
-      --   return not _G.show_more_info and st.git_hunks() or ""
-      -- end,
+      git_hunks = function()
+        return not _G.show_more_info and st.git_hunks() or ""
+      end,
     },
   },
 

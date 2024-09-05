@@ -32,10 +32,6 @@ return {
     hijack_netrw = true,
     disable_netrw = true,
 
-    -- view = {
-    --   width = 32,
-    -- },
-
     view = {
       adaptive_size = false,
       -- side = "left",

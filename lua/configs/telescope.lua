@@ -18,7 +18,7 @@ return {
 
     return {
       {
-        "<leader>a",
+        "<C-M>",
         function()
           require("telescope.builtin").find_files(dropdown_theme())
         end,

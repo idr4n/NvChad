@@ -43,7 +43,7 @@ end, { desc = "File Format with conform" })
 keymap("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 keyset("v", "<C-g>", "<ESC>")
 keymap("n", "ga", ":b#<CR>zz", { desc = "Last buffer" })
-keyset({ "n", "v", "o" }, "gh", "^", { desc = "Go to start of line" })
+keyset({ "n", "v", "o" }, "gh", "0", { desc = "Go to start of line" })
 keyset({ "n", "o" }, "gl", "$", { desc = "Go to end of line" })
 keyset("v", "gl", "$h", { desc = "Go to end of line" })
 keymap("n", "g;", "^v$h", { desc = "Select line-no-end" })
@@ -83,6 +83,17 @@ keyset(
 --: Move up and down with wrapped lines {{{
 keymap("n", "j", "gj")
 keymap("n", "k", "gk")
+--: }}}
+
+--: search for word under cursor and stays there {{{
+-- searches exact word (* forward, # backwards)
+keymap("n", "*", "*N", { desc = "Search exact" })
+keymap("n", "#", "#N", { desc = "Search exact backwards" })
+-- searches but not the exact word (* forward, # backwards)
+keymap("n", "g*", "g*N", { desc = "Search not exact" })
+keymap("n", "g#", "g#N", { desc = "BckSearch not exact" })
+-- search for highlighted text
+keymap("v", "*", "y/\\V<C-R>=escape(@\",'/')<CR><CR>N", { desc = "Search for highlighted text" })
 --: }}}
 
 --: Move text up and down

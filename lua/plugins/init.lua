@@ -176,6 +176,24 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      exclude = {
+        filetypes = {
+          "",
+          "alpha",
+          "dashboard",
+          "NvimTree",
+          "help",
+          "markdown",
+          "dirvish",
+          "nnn",
+          "packer",
+          "toggleterm",
+          "lsp-installer",
+          "Outline",
+        },
+      },
+    },
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "blankline")
       local ut = require "utils"
@@ -299,8 +317,7 @@ return {
       {
         "<leader><Space>",
         function()
-          require("nvim-tree.api").tree.close()
-          require("nvim-tree.api").tree.find_file { open = true, current_window = true }
+          require("nvim-tree.api").tree.toggle { current_window = true }
         end,
         silent = true,
         desc = "NvimTree Open",

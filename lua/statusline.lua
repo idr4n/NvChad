@@ -47,8 +47,8 @@ local modes = {
 }
 
 local modes_colors = {
-  n = "St_Blue",
-  i = "St_Purple",
+  n = "St_Purple",
+  i = "St_Green",
   v = "St_Pink",
   V = "St_Pink",
   ["\22"] = "St_Pink",
@@ -93,8 +93,14 @@ function M.filetype()
 end
 
 function M.cwd()
+  local name = ""
+  local m = vim.api.nvim_get_mode().mode
   local hl = vim.o.background == "dark" and "%#St_Status1#" or "%#St_Status1_light#"
-  local name = hl .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
+  if m ~= "n" then
+    name = "%#" .. modes_colors[m] .. "#" .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
+  else
+    name = hl .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
+  end
   return (vim.o.columns > 85 and name) or ""
 end
 
@@ -110,10 +116,11 @@ function M.LSP_Diagnostics()
     return ""
   end
 
-  errors = (errors and errors > 0) and ("󰅚 " .. errors .. " ") or ""
-  warnings = (warnings and warnings > 0) and (" " .. warnings .. " ") or ""
-  hints = (hints and hints > 0) and ("󰛩 " .. hints .. " ") or ""
-  info = (info and info > 0) and (" " .. info .. " ") or ""
+  errors = (errors and errors > 0) and (" " .. errors .. " ") or ""
+  warnings = (warnings and warnings > 0) and (" " .. warnings .. " ") or ""
+  -- hints = (hints and hints > 0) and ("󰛩 " .. hints .. " ") or ""
+  hints = (hints and hints > 0) and ("󰌵 " .. hints .. " ") or ""
+  info = (info and info > 0) and (" " .. info .. " ") or ""
 
   return (diagnostics > 0 and " ") .. errors .. warnings .. hints .. info
 end
@@ -188,14 +195,19 @@ function M.lsp_running()
 end
 
 function M.git_hunks()
+  if not vim.b[0].gitsigns_head or vim.b[0].gitsigns_git_status then
+    return ""
+  end
+
   local hunks = require("gitsigns").get_hunks()
   local nhunks = hunks and #hunks or 0
+  local branch_name = "  " .. vim.b[0].gitsigns_status_dict.head .. " "
   local status = ""
   local hunk_icon = " "
   if nhunks > 0 then
     status = " " .. hunk_icon .. nhunks
   end
-  return nhunks > 0 and status .. " " or ""
+  return status .. " " .. branch_name
 end
 
 M.git = function()
@@ -207,12 +219,14 @@ M.git = function()
 
   local total = (git_status.added or 0) + (git_status.changed or 0) + (git_status.removed or 0)
 
-  local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
-  local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
+  local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
+  local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
   local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
-  local branch_name = "  " .. git_status.head .. (total == 0 and " " or "")
+  -- local branch_name = "  " .. git_status.head .. (total == 0 and " " or "")
+  local branch_name = "  " .. git_status.head .. " "
 
-  return branch_name .. (total > 0 and added .. changed .. removed .. " " or "")
+  -- return branch_name .. (total > 0 and added .. changed .. removed .. " " or "")
+  return (total > 0 and added .. changed .. removed .. " " or "") .. branch_name
 end
 
 function M.get_words()
