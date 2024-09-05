@@ -1002,6 +1002,13 @@ return {
   },
 
   {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    keys = require("configs.copilot").keys,
+    opts = require("configs.copilot").opts,
+  },
+
+  {
     "HakonHarnes/img-clip.nvim",
     cmd = { "PasteImage", "ImgClipDebug" },
     opts = {
@@ -1015,6 +1022,32 @@ return {
     },
     keys = {
       { "<leader>pi", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+    },
+  },
+
+  {
+    "junegunn/vim-easy-align",
+    keys = {
+      { "ga", "<Plug>(EasyAlign)", mode = "x", desc = "EasyAlign" },
+    },
+  },
+
+  {
+    "dhruvasagar/vim-table-mode",
+    event = "BufReadPost",
+    ft = { "markdown" },
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    -- enabled = false,
+    ft = { "markdown", "Avante", "codecompanion" },
+    opts = {
+      file_types = { "markdown", "Avante", "codecompanion" },
+      bullet = {
+        icons = { "•", "◦", "▪", "▫" },
+        right_pad = 2,
+      },
     },
   },
 }
