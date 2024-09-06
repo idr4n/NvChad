@@ -6,9 +6,10 @@ local M = {}
 
 ---@type Base46HLGroupsList
 M.override = {
-  Comment = {
-    italic = true,
-  },
+  -- Comment = {
+  --   italic = true,
+  -- },
+  -- ["@comment"] = { italic = true },
   -- ["@ibl.scope.underline.1"] = { bg = "one_bg2" },
 }
 
@@ -30,7 +31,7 @@ M.add = {
   St_Orange = { fg = "black", bg = "orange", bold = true },
   St_Red = { fg = "black", bg = "red", bold = true },
 
-  BufferLineOffsetSeparator = { fg = "darker_black", bg = "darker_black" }
+  BufferLineOffsetSeparator = { fg = "darker_black", bg = "darker_black" },
 }
 
 return M
