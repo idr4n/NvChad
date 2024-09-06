@@ -1,19 +1,27 @@
+-- This file needs to have same structure as nvconfig.lua
+-- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
+
+---@type ChadrcConfig
 local M = {}
 
 local highlights = require "highlights"
 local st = require "statusline"
 
-M.ui = {
+M.base46 = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "chadracula" },
 
   hl_add = highlights.add,
   hl_override = highlights.override,
+}
 
+M.ui = {
   lsp = {
     signature = true,
     semantic_tokens = true,
   },
+
+  telescope = { style = "bordered" },
 
   statusline = {
     theme = "vscode",
@@ -61,7 +69,13 @@ M.ui = {
   tabufline = {
     enabled = true,
     lazyload = false,
-    order = { "buffers", "tabs", "btns" },
+    -- order = { "buffers", "tabs", "btns" },
+    order = { "offset", "buffers", "tabs", "btns" },
+    modules = {
+      offset = function()
+        return ""
+      end,
+    },
   },
 }
 
