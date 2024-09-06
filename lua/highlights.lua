@@ -11,6 +11,7 @@ M.override = {
   -- },
   -- ["@comment"] = { italic = true },
   -- ["@ibl.scope.underline.1"] = { bg = "one_bg2" },
+  NonText = { fg = "one_bg" },
 }
 
 ---@type HLTable
@@ -32,6 +33,9 @@ M.add = {
   St_Red = { fg = "black", bg = "red", bold = true },
 
   BufferLineOffsetSeparator = { fg = "darker_black", bg = "darker_black" },
+
+  ColorColum = { bg = "#2D303E" },
+  RenderMarkdownCode = { link = "ColorColum" },
 }
 
 return M
