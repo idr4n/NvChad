@@ -23,7 +23,7 @@ vim.o.listchars = [[tab:──,trail:·,nbsp:␣,precedes:«,extends:»,]]
 -- vim.o.cursorlineopt ='number,line'
 
 -- load statuscolumn
--- opt.statuscolumn = [[%!v:lua.require'utils'.statuscolumn()]]
+opt.statuscolumn = [[%!v:lua.require'utils'.statuscolumn()]]
 
 local enable_providers = {
   "python3_provider",
