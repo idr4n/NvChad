@@ -1,5 +1,6 @@
 return {
   opts = {
+    ui = { enable = false },
     workspaces = {
       {
         name = "personal",
