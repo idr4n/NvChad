@@ -34,7 +34,7 @@ M.add = {
 
   BufferLineOffsetSeparator = { fg = "darker_black", bg = "darker_black" },
 
-  ColorColum = { bg = "#2D303E" },
+  ColorColum = { bg = "black2" },
   RenderMarkdownCode = { link = "ColorColum" },
 }
 
