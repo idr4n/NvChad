@@ -20,8 +20,9 @@ M.add = {
   St_Stealth = { fg = { "light_grey", -7 }, bg = "statusline_bg" },
   St_Stealth_light = { fg = { "light_grey", 7 }, bg = "statusline_bg" },
   St_Status = { fg = "light_grey", bg = "statusline_bg" },
-  St_Status1 = { fg = { "light_grey", 10 }, bg = { "black", 5 } },
+  St_Status1 = { fg = { "light_grey", -4 }, bg = { "black", 5 } },
   St_Status1_light = { fg = { "light_grey", -10 }, bg = { "black", -13 } },
+  St_Status2 = { fg = { "light_grey", 5 }, bg = { "black", 10 } },
 
   -- modes hl_groups
   St_Pink = { fg = "black", bg = "baby_pink", bold = true },

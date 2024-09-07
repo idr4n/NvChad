@@ -95,7 +95,7 @@ end
 function M.cwd()
   local name = ""
   local m = vim.api.nvim_get_mode().mode
-  local hl = vim.o.background == "dark" and "%#St_Status1#" or "%#St_Status1_light#"
+  local hl = vim.o.background == "dark" and "%#St_Status2#" or "%#St_Status1_light#"
   if m ~= "n" then
     name = "%#" .. modes_colors[m] .. "#" .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
   else
@@ -207,7 +207,7 @@ function M.git_hunks()
   if nhunks > 0 then
     status = " " .. hunk_icon .. nhunks
   end
-  return status .. " " .. branch_name
+  return status .. " " .. "%#St_Status1#" .. branch_name
 end
 
 M.git = function()
