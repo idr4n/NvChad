@@ -164,6 +164,13 @@ keymap("n", "<leader>qQ", ":q!<CR>", { desc = "Force Quit" })
 -- Tabs
 keymap("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+keymap("n", "<leader><tab>d", ":tabclose<cr>", { desc = "Close tab" })
+keymap("n", "<leader><tab>q", ":tabclose<cr>", { desc = "Close tab" })
+keymap("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+keymap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Toggle theme
 keyset("n", "<leader>tt", function()
