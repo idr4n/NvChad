@@ -77,6 +77,31 @@ M.ui = {
       end,
     },
   },
+
+  mason = {
+    cmd = true,
+    pkgs = {
+      -- lua stuff
+      "lua-language-server",
+      "stylua",
+
+      -- web dev stuff
+      "css-lsp",
+      "html-lsp",
+      "tailwindcss-language-server",
+      "typescript-language-server",
+      "deno",
+      "prettier",
+
+      -- c/cpp stuff
+      "clangd",
+      "clang-format",
+
+      -- python
+      "pyright",
+      "ruff-lsp",
+    },
+  },
 }
 
 return M
