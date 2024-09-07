@@ -206,7 +206,6 @@ return {
 
       local hl_group = "@ibl.scope.underline.1"
       vim.api.nvim_set_hl(0, hl_group, { bg = hl_bg })
-      -- vim.api.nvim_set_hl(0, hl_group, { standout = true, underline = false })
     end,
   },
 
@@ -1029,8 +1028,11 @@ return {
 
   {
     "dhruvasagar/vim-table-mode",
-    event = "BufReadPost",
     ft = { "markdown" },
+    init = function()
+      vim.g.table_mode_disable_mappings = 1
+      vim.g.table_mode_disable_tableize_mappings = 1
+    end,
   },
 
   {
@@ -1041,8 +1043,37 @@ return {
       file_types = { "markdown", "Avante", "codecompanion" },
       bullet = {
         icons = { "•", "◦", "▪", "▫" },
-        right_pad = 2,
+        right_pad = 1,
       },
     },
+  },
+
+  {
+    "lukas-reineke/virt-column.nvim",
+    event = "BufReadPost",
+    opts = {
+      char = { "│" },
+      virtcolumn = "80",
+    },
+  },
+
+  {
+    "uga-rosa/ccc.nvim",
+    -- ft = require("configs.colorizers").colored_fts,
+    cmd = { "CccPick", "CccHighlighterToggle" },
+    keys = {
+      -- { ",c", "<cmd>CccHighlighterToggle<cr>", silent = true, desc = "Toggle colorizer" },
+      { ",p", "<cmd>CccPick<cr>", silent = true, desc = "Pick color" },
+    },
+    opts = require("configs.colorizers").ccc_opts,
+  },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    ft = require("configs.colorizers").colored_fts,
+    keys = {
+      { ",c", "<cmd>ColorizerToggle<cr>", silent = true, desc = "Toggle colorizer" },
+    },
+    opts = require("configs.colorizers").colorizer_opts,
   },
 }
