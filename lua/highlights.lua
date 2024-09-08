@@ -17,12 +17,12 @@ M.override = {
 ---@type HLTable
 M.add = {
   -- NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  St_Stealth = { fg = { "light_grey", -7 }, bg = "statusline_bg" },
+  St_Stealth = { fg = { "light_grey", 2 }, bg = "statusline_bg" },
   St_Stealth_light = { fg = { "light_grey", 7 }, bg = "statusline_bg" },
   St_Status = { fg = "light_grey", bg = "statusline_bg" },
-  St_Status1 = { fg = { "light_grey", -4 }, bg = { "black", 5 } },
+  St_Status1 = { fg = { "light_grey", 7 }, bg = { "black", 7 } },
   St_Status1_light = { fg = { "light_grey", -10 }, bg = { "black", -13 } },
-  St_Status2 = { fg = { "light_grey", 5 }, bg = { "black", 10 } },
+  St_Status2 = { fg = { "light_grey", 15 }, bg = { "black", 10 } },
 
   -- modes hl_groups
   St_Pink = { fg = "black", bg = "baby_pink", bold = true },
@@ -37,6 +37,12 @@ M.add = {
 
   ColorColum = { bg = "black2" },
   RenderMarkdownCode = { link = "ColorColum" },
+  RenderMarkdownH1Bg = { fg = "green" },
+  RenderMarkdownH2Bg = { fg = "purple" },
+  RenderMarkdownH3Bg = { fg = "yellow" },
+  RenderMarkdownH4Bg = { fg = "orange" },
+  RenderMarkdownH5Bg = { fg = "orange" },
+  RenderMarkdownH6Bg = { fg = "orange" },
 }
 
 return M

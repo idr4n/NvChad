@@ -47,7 +47,7 @@ local modes = {
 }
 
 local modes_colors = {
-  n = "St_Purple",
+  n = "St_Blue",
   i = "St_Green",
   v = "St_Pink",
   V = "St_Pink",
@@ -95,12 +95,7 @@ end
 function M.cwd()
   local name = ""
   local m = vim.api.nvim_get_mode().mode
-  local hl = vim.o.background == "dark" and "%#St_Status2#" or "%#St_Status1_light#"
-  if m ~= "n" then
-    name = "%#" .. modes_colors[m] .. "#" .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
-  else
-    name = hl .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
-  end
+  name = "%#" .. modes_colors[m] .. "#" .. "  " .. vim.loop.cwd():match "([^/\\]+)[/\\]*$" .. " "
   return (vim.o.columns > 85 and name) or ""
 end
 

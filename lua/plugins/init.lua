@@ -1043,7 +1043,7 @@ return {
       file_types = { "markdown", "Avante", "codecompanion" },
       bullet = {
         icons = { "•", "◦", "▪", "▫" },
-        right_pad = 1,
+        -- right_pad = 1,
       },
     },
   },
@@ -1054,6 +1054,7 @@ return {
     opts = {
       char = { "│" },
       virtcolumn = "80",
+      exclude = { filetypes = { "markdown" } },
     },
   },
 
