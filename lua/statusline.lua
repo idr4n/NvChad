@@ -48,7 +48,7 @@ local modes = {
 
 local modes_colors = {
   n = "St_Blue",
-  i = "St_Green",
+  i = "St_Purple",
   v = "St_Pink",
   V = "St_Pink",
   ["\22"] = "St_Pink",
