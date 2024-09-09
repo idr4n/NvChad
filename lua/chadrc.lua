@@ -8,7 +8,7 @@ local highlights = require "highlights"
 local st = require "statusline"
 
 M.base46 = {
-  theme = "chadracula",
+  theme = "nord",
   theme_toggle = { "chadracula", "nord" },
 
   hl_add = highlights.add,
@@ -69,13 +69,7 @@ M.ui = {
   tabufline = {
     enabled = true,
     lazyload = false,
-    -- order = { "buffers", "tabs", "btns" },
-    order = { "offset", "buffers", "tabs", "btns" },
-    modules = {
-      offset = function()
-        return ""
-      end,
-    },
+    order = { "buffers", "tabs", "btns" },
   },
 
   mason = {
