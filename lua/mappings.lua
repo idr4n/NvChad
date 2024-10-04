@@ -43,7 +43,8 @@ end, { desc = "File Format with conform" })
 keymap("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 keyset("v", "<C-g>", "<ESC>")
 keymap("n", "ga", ":b#<CR>zz", { desc = "Last buffer" })
-keyset({ "n", "v", "o" }, "gh", "0", { desc = "Go to start of line" })
+keyset({ "n", "v", "o" }, "gk", "0", { desc = "Go to start of line" })
+keyset({ "n", "v", "o" }, "gh", "^", { desc = "Go to beginning of line" })
 keyset({ "n", "o" }, "gl", "$", { desc = "Go to end of line" })
 keyset("v", "gl", "$h", { desc = "Go to end of line" })
 keymap("n", "g;", "^v$h", { desc = "Select line-no-end" })
@@ -207,7 +208,7 @@ keymap("v", "d", '"_d')
 keyset("n", "gm", "m", { desc = "Add mark" })
 keymap("", "m", "d")
 keymap("", "M", "D")
-keymap("", "<leader>m", '"+d', { desc = "Cut to clipboard" })
+-- keymap("", "<leader>m", '"+d', { desc = "Cut to clipboard" })
 keymap("n", "x", '"_x')
 keymap("n", "X", '"_X')
 keyset({ "n", "x", "o" }, "c", '"_c')
@@ -287,6 +288,15 @@ keyset("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 keymap("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 --: }}}
 
+--: NvChad Menu {{{
+-- stylua: ignore
+keyset("n", "<leader>mm", function() require("menu").open "default" end, { desc = "NvChad Menu - Default" })
+-- stylua: ignore
+keyset("n", "<leader>ml", function() require("menu").open "lsp" end, { desc = "NvChad Menu - LSP" })
+-- stylua: ignore
+keyset("n", "<leader>mg", function() require("menu").open "gitsigns" end, { desc = "NvChad Menu - GitSigns" })
+--: }}}
+
 -- Delete some default mappings
 -- vim.keymap.del("n", "<C-n>")
 vim.keymap.del("n", "<leader>rn")
@@ -297,3 +307,11 @@ vim.keymap.del("n", "<A-v>")
 vim.keymap.del("n", "<A-h>")
 vim.keymap.del("n", "<A-i>")
 vim.keymap.del("n", "<leader>n")
+
+--: Harpoon... {{{
+keyset("n", "<M-u>", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", { desc = "Harpoon - 1" })
+keyset("n", "<M-i>", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", { desc = "Harpoon - 2" })
+keyset("n", "<M-o>", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", { desc = "Harpoon - 3" })
+keyset("n", "<M-[>", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", { desc = "Harpoon - 4" })
+keyset("n", "<M-]>", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", { desc = "Harpoon - 5" })
+--: }}}

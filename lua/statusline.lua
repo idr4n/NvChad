@@ -142,7 +142,8 @@ function M.fileblock()
 end
 
 function M.position()
-  return "%3l:%-2c %-3L "
+  -- return "%3l:%-2c %-3L "
+  return "%2c:%-3l %-3L "
 end
 
 function M.search_count()
@@ -181,7 +182,7 @@ function M.lsp_running()
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_clients()) do
       if client.attached_buffers[stbufnr()] and client.name ~= "null-ls" then
-        return (vim.o.columns > 100 and " 󰄭  " .. client.name .. " ") or " 󰄭  LSP "
+        return (vim.o.columns > 100 and " 󰄭  " .. client.name .. "  ") or " 󰄭  LSP "
       end
     end
   end
@@ -221,7 +222,7 @@ M.git = function()
   local branch_name = "  " .. git_status.head .. " "
 
   -- return branch_name .. (total > 0 and added .. changed .. removed .. " " or "")
-  return (total > 0 and added .. changed .. removed .. " " or "") .. branch_name
+  return (total > 0 and added .. changed .. removed .. " " or "") .. "%#St_Status1#" .. branch_name
 end
 
 function M.get_words()

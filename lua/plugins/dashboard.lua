@@ -1,4 +1,9 @@
 return {
+  "nvimdev/dashboard-nvim",
+  event = "VimEnter",
+  keys = {
+    { "<leader>od", "<cmd>Dashboard<cr>", desc = "Open Dashboard" },
+  },
   opts = function()
     local logo = [[
            ▄ ▄                   
@@ -16,9 +21,9 @@ return {
 
     local opts = {
       theme = "doom",
-      -- hide = {
-      --   statusline = false,
-      -- },
+      hide = {
+        statusline = false,
+      },
       config = {
         header = vim.split(logo, "\n"),
         -- stylua: ignore
@@ -27,10 +32,9 @@ return {
           { action = "ene | startinsert",                                              desc = " New file",        icon = " ", key = "n" },
           { action = "Telescope oldfiles",                                             desc = " Recent files",    icon = " ", key = "t" },
           { action = "Telescope live_grep",                                            desc = " Find text",       icon = "󰺮 ", key = "r" },
-          { action = "lcd ~/dotfiles | echo 'Directory:' getcwd()",                    desc = " Dotfiles",        icon = " ", key = "d" },
           { action = 'lua require("session_manager").load_current_dir_session()',      desc = " Restore Session", icon = " ", key = "s" },
-          -- { action = 'lua require("persistence").load()',                              desc = " Restore Session", icon = " ", key = "s" },
           { action = "Lazy",                                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
+          { action = "Oil --float",                                                    desc = " File Explorer",   icon = " ", key = "n" },
           { action = "qa",                                                             desc = " Quit",            icon = " ", key = "q" },
         },
         footer = function()

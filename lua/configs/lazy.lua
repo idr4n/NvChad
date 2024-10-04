@@ -2,6 +2,11 @@ return {
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
 
+  checker = {
+    enabled = true, -- check for plugin updates periodically
+    notify = false, -- notify on update
+  },
+
   ui = {
     icons = {
       ft = "",

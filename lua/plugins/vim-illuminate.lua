@@ -1,4 +1,10 @@
 return {
+  "RRethy/vim-illuminate",
+  event = { "BufReadPre", "BufNewFile" },
+  keys = {
+    { "]]", desc = "Next Reference" },
+    { "[[", desc = "Prev Reference" },
+  },
   opts = {
     delay = 200,
     large_file_cutoff = 2000,
@@ -6,11 +12,8 @@ return {
       providers = { "lsp" },
     },
   },
-  keys = {
-    { "]]", desc = "Next Reference" },
-    { "[[", desc = "Prev Reference" },
-  },
-  setup = function()
+  config = function(_, opts)
+    require("illuminate").configure(opts)
     local function map(key, dir, buffer)
       vim.keymap.set("n", key, function()
         require("illuminate")["goto_" .. dir .. "_reference"](false)

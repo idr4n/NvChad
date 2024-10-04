@@ -5,11 +5,11 @@
 local M = {}
 
 local highlights = require "highlights"
-local st = require "statusline"
+-- local st = require "statusline"
 
 M.base46 = {
-  theme = "nord",
-  theme_toggle = { "chadracula", "nord" },
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "chadracula" },
 
   hl_add = highlights.add,
   hl_override = highlights.override,
@@ -21,48 +21,59 @@ M.ui = {
     semantic_tokens = true,
   },
 
+  cmp = {
+    icons = true,
+    icons_left = true,
+    lspkind_text = true,
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    format_colors = {
+      tailwind = true,
+    },
+  },
+
   telescope = { style = "bordered" },
 
   statusline = {
-    theme = "vscode",
+    enabled = false,
+    -- theme = "vscode",
     -- theme = "default",
 
     -- stylua: ignore
     -- order = { "mode", "filetype", "hl_status", "file", "diagnostics", "git", "%=", "search_count", "lsp_msg", "%=", "hl_stealth", "charcode", "LSP", "position", "cwd" }, -- custom status
-    order = { "mode", "filetype", "hl_stealth", "file", "lsp_diagnostics", "%=", "search_count", "lsp_msg", "%=", "hl_stealth", "word_count", "charcode", "LSP", "position", "git", "git_hunks", "cwd" }, -- custom status
+    -- order = { "mode", "filetype", "hl_stealth", "file", "lsp_diagnostics", "%=", "search_count", "lsp_msg", "%=", "hl_stealth", "word_count", "charcode", "LSP", "position", "git", "git_hunks", "cwd" }, -- custom status
 
-    modules = {
-      -- mode = st.mode,
-      mode = st.color_mode,
-      filetype = st.filetype,
-      lsp_diagnostics = st.LSP_Diagnostics,
-      cwd = st.cwd,
-      hl_status = function()
-        return "%#StatusLine#"
-      end,
-      hl_stealth = st.hl_stealth,
-      file = function()
-        return st.fileblock()
-        -- return _G.show_more_info and st.fileblock() or ""
-      end,
-      search_count = st.search_count,
-      charcode = function()
-        return _G.show_more_info and st.charcode() or ""
-      end,
-      position = function()
-        return _G.show_more_info and st.position() or ""
-      end,
-      LSP = function()
-        return _G.show_more_info and st.lsp_running() or ""
-      end,
-      git = function()
-        return _G.show_more_info and st.git() or ""
-      end,
-      word_count = st.get_words,
-      git_hunks = function()
-        return not _G.show_more_info and st.git_hunks() or ""
-      end,
-    },
+    -- modules = {
+    --   -- mode = st.mode,
+    --   mode = st.color_mode,
+    --   filetype = st.filetype,
+    --   lsp_diagnostics = st.LSP_Diagnostics,
+    --   cwd = st.cwd,
+    --   hl_status = function()
+    --     return "%#StatusLine#"
+    --   end,
+    --   hl_stealth = st.hl_stealth,
+    --   file = function()
+    --     return st.fileblock()
+    --     -- return _G.show_more_info and st.fileblock() or ""
+    --   end,
+    --   search_count = st.search_count,
+    --   charcode = function()
+    --     return _G.show_more_info and st.charcode() or ""
+    --   end,
+    --   position = function()
+    --     return _G.show_more_info and st.position() or ""
+    --   end,
+    --   LSP = function()
+    --     return _G.show_more_info and st.lsp_running() or ""
+    --   end,
+    --   git = function()
+    --     return _G.show_more_info and st.git() or ""
+    --   end,
+    --   word_count = st.get_words,
+    --   git_hunks = function()
+    --     return not _G.show_more_info and st.git_hunks() or ""
+    --   end,
+    -- },
   },
 
   -- lazyload it when there are 1+ buffers
@@ -94,6 +105,9 @@ M.ui = {
       -- python
       "pyright",
       "ruff-lsp",
+
+      -- zig
+      "zls",
     },
   },
 }

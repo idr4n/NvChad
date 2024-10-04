@@ -1,4 +1,35 @@
 return {
+  "nvim-tree/nvim-tree.lua",
+  keys = {
+    { "<leader>na", ":NvimTreeCollapse<cr>", silent = true, desc = "NvimTree Collapse All" },
+    {
+      "<leader>nc",
+      function()
+        vim.cmd "NvimTreeCollapse"
+        require("nvim-tree.api").tree.find_file()
+      end,
+      silent = true,
+      desc = "NvimTree Collapse",
+    },
+    {
+      "<leader><Space>",
+      function()
+        require("nvim-tree.api").tree.toggle { current_window = true }
+      end,
+      silent = true,
+      desc = "NvimTree Open",
+    },
+  },
+
+  init = function()
+    if vim.fn.argc(-1) == 1 then
+      local stat = vim.loop.fs_stat(vim.fn.argv(0))
+      if stat and stat.type == "directory" then
+        require "nvim-tree"
+      end
+    end
+  end,
+
   opts = {
     on_attach = function(bufnr)
       local api = require "nvim-tree.api"
@@ -27,6 +58,10 @@ return {
         api.node.open.edit()
         api.tree.close_in_this_tab()
       end, opts "Open and close tree")
+
+      vim.keymap.set("n", "<leader>mn", function()
+        require("menu").open "nvimtree"
+      end, opts "NvChad Menu")
     end,
 
     hijack_netrw = true,
@@ -80,4 +115,8 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    dofile(vim.g.base46_cache .. "nvimtree")
+    require("nvim-tree").setup(opts)
+  end,
 }

@@ -105,8 +105,8 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
 -- Code Run Script
 command("CodeRun", function()
-  vim.cmd "execute '!~/scripts/code_run \"%\"'"
-  -- require("noice").redirect "execute '!~/scripts/code_run \"%\"'"
+  -- vim.cmd "execute '!~/scripts/code_run \"%\"'"
+  require("noice").redirect "execute '!~/scripts/code_run \"%\"'"
 end, {})
 keymap("n", "<leader>cr", ":CodeRun<cr>", { desc = "Run code - own script" })
 
@@ -161,11 +161,10 @@ end, {})
 keymap("n", "<leader>on", "<cmd>NewTmuxNvim<cr>", { desc = "Same file in TMUX window" })
 
 -- Convert markdown file to pdf using pandoc
--- command("MdToPdf", 'execute \'silent !pandoc "%" -o "%:r.pdf"\'', {})
-command("MdToPdf", 'execute \'silent !pandoc "%" --listings -H ~/dotfiles/listings-setup.tex -o "%:r.pdf"\'', {})
+command("MdToPdf", 'execute \'silent !pandoc "%" --listings -H ~/.config/pandoc/listings-setup.tex -o "%:r.pdf"\'', {})
 command(
   "MdToPdfNumbered",
-  'execute \'silent !pandoc "%" --listings -H ~/dotfiles/listings-setup.tex -o "%:r.pdf" --number-sections\'',
+  'execute \'silent !pandoc "%" --listings -H ~/.config/pandoc/listings-setup.tex -o "%:r.pdf" --number-sections\'',
   {}
 )
 command("MdToPdfWatch", function()
@@ -173,9 +172,9 @@ command("MdToPdfWatch", function()
     print "Fswatch job already running."
     return
   end
-  vim.cmd 'execute \'silent !pandoc "%" --listings -H ~/dotfiles/listings-setup.tex -L ~/pagebreak.lua --include-in-header ~/header.tex -o "%:r.pdf"\''
+  vim.cmd 'execute \'silent !pandoc "%" --listings -H ~/.config/pandoc/listings-setup.tex -L ~/.config/pandoc/pagebreak.lua --include-in-header ~/.config/pandoc/header.tex -o "%:r.pdf"\''
   local cmd = string.format(
-    'fswatch -o "%s" | xargs -n1 -I{} pandoc "%s" --listings -H ~/dotfiles/listings-setup.tex -L ~/pagebreak.lua --include-in-header ~/header.tex -o "%s.pdf"',
+    'fswatch -o "%s" | xargs -n1 -I{} pandoc "%s" --listings -H ~/.config/pandoc/listings-setup.tex -L ~/.config/pandoc/pagebreak.lua --include-in-header ~/.config/pandoc/header.tex -o "%s.pdf"',
     vim.fn.expand "%:p",
     vim.fn.expand "%:p",
     vim.fn.expand "%:r"
@@ -200,8 +199,47 @@ command("StopMdToPdfWatch", function()
   end
 end, {})
 
+vim.keymap.set("n", "<leader>mw", function()
+  if _G.fswatch_job_id then
+    vim.cmd "StopMdToPdfWatch"
+  else
+    vim.cmd "MdToPdfWatch"
+  end
+end, { desc = "MarkdowntoPDFWatch Toggle" })
+
 -- Convert markdown file to docx using pandoc
 command("MdToDocx", 'execute \'silent !pandoc "%" -o "%:r.docx"\'', {})
 
 -- Convert markdown file to Beamer presentation using pandoc
 command("MdToBeamer", 'execute \'silent !pandoc "%" -t beamer -o "%:r.pdf"\'', {})
+
+command("LuaInspect", function()
+  local sel = vim.fn.mode() == "v" and vim.getVisualSelection() or nil
+  if sel then
+    local chunk, load_error = load("return " .. sel)
+    if chunk then
+      local success, result = pcall(chunk)
+      if success then
+        vim.notify(vim.inspect(result), vim.log.levels.INFO)
+      else
+        vim.notify("Error evaluating expression: " .. result, vim.log.levels.ERROR)
+      end
+    else
+      vim.notify("Error loading expression: " .. load_error, vim.log.levels.ERROR)
+    end
+  else
+    vim.api.nvim_feedkeys(":lua print(vim.inspect())", "n", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Left><Left>", true, false, true), "n", true)
+  end
+end, {})
+vim.keymap.set({ "n", "v" }, "<leader>pi", "<cmd>LuaInspect<cr>", { desc = "Lua Inspect" })
+
+command("LuaPrint", function()
+  if vim.fn.mode() == "v" then
+    vim.cmd "LuaInspect"
+  else
+    vim.api.nvim_feedkeys(":lua print()", "n", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Left>", true, false, true), "n", true)
+  end
+end, {})
+vim.keymap.set({ "n", "v" }, "<leader>pp", "<cmd>LuaPrint<cr>", { desc = "Lua Print" })

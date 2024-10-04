@@ -77,6 +77,7 @@ local servers = {
   "texlab",
   "gopls",
   -- "rust_analyzer", -- configured by rustaceanvim instead
+  "zls",
 }
 
 for _, lsp in ipairs(servers) do

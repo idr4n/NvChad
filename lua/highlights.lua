@@ -43,6 +43,8 @@ M.add = {
   RenderMarkdownH4Bg = { fg = "orange" },
   RenderMarkdownH5Bg = { fg = "orange" },
   RenderMarkdownH6Bg = { fg = "orange" },
+
+  NoiceCmdlinePopUp = { bg = "statusline_bg" },
 }
 
 return M

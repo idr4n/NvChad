@@ -1,4 +1,9 @@
 return {
+  "nvim-telescope/telescope.nvim",
+  dependencies = {
+    { "nvim-telescope/telescope-ui-select.nvim" },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  },
   keys = function()
     _G.dropdown_theme = function(opts)
       opts = vim.tbl_deep_extend("force", {
@@ -18,8 +23,9 @@ return {
 
     return {
       {
-        "<C-M>",
+        "<C-Space>",
         function()
+          -- require("telescope.builtin").find_files()
           require("telescope.builtin").find_files(dropdown_theme())
         end,
         noremap = true,
@@ -40,7 +46,7 @@ return {
         desc = "Go to LSP definition",
       },
       {
-        "s",
+        "<leader>,",
         function()
           require("telescope.builtin").buffers(require("telescope.themes").get_dropdown {
             initial_mode = "normal",
@@ -99,7 +105,6 @@ return {
       { "<leader>ot", "<cmd>Telescope resume<cr>", desc = "Telescope Resume" },
     }
   end,
-
   opts = function()
     local actions = require "telescope.actions"
     local conf = require "nvchad.configs.telescope"
