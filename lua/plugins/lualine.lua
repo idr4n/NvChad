@@ -158,9 +158,11 @@ return {
           fileinfo,
         },
         lualine_x = {
-          function()
-            return require("lsp-progress").progress()
-          end,
+          -- stylua: ignore
+          {
+            function() return require("lsp-progress").progress() end,
+            color = function() return utils.get_fg("Added") end
+          },
           -- stylua: ignore
           {
             function() return require("noice").api.status.command.get() end,
@@ -250,6 +252,12 @@ return {
               added = utils.git_icons.added,
               modified = utils.git_icons.modified,
               removed = utils.git_icons.removed,
+            },
+            -- stylua: ignore
+            diff_color = {
+              added = function() return utils.get_fg("Added") end,
+              modified = function() return utils.get_fg("Changed") end,
+              removed = function() return utils.get_fg("Removed") end,
             },
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
