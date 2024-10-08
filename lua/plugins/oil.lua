@@ -11,8 +11,7 @@ return {
     end
   end,
   keys = {
-    { "<leader>-", "<cmd>Oil<cr>", desc = "Oil Parent Dir" },
-    { "s", "<cmd>Oil --float<cr>", desc = "Oil Float - Parent Dir" },
+    { "-", "<cmd>Oil --float<cr>", desc = "Oil Float - Parent Dir" },
   },
   opts = {
     default_file_explorer = true,

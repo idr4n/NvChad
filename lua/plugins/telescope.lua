@@ -46,7 +46,8 @@ return {
         desc = "Go to LSP definition",
       },
       {
-        "<leader>,",
+        -- "<leader>,",
+        "s",
         function()
           require("telescope.builtin").buffers(require("telescope.themes").get_dropdown {
             initial_mode = "normal",

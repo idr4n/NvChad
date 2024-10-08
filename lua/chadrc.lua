@@ -8,7 +8,7 @@ local highlights = require "highlights"
 -- local st = require "statusline"
 
 M.base46 = {
-  theme = "nord",
+  theme = "chadracula",
   theme_toggle = { "chadracula", "nord" },
 
   hl_add = highlights.add,

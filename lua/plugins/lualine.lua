@@ -99,25 +99,13 @@ return {
       callback = require("lualine").refresh,
     })
 
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      group = "lualine_augroup",
-      pattern = { "dracula", "nord", "*" },
-      callback = function()
-        if vim.g.colors_name == "nord" then
-          require("lualine").setup { options = { theme = "nord" } }
-        else
-          require("lualine").setup { options = { theme = dracula_custom } }
-        end
-      end,
-    })
-
     local opts = {
       options = {
         -- theme = "auto",
         -- theme = theme,
         theme = theme[require("chadrc").base46.theme] or "auto",
         globalstatus = vim.o.laststatus == 3,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "telescope" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "telescope", "nvdash" } },
         -- component_separators = { left = "", right = "" },
         component_separators = vim.env.TERM == "alacritty" and { left = "", right = "" }
           or { left = "", right = "" },
