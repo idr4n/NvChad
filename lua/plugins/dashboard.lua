@@ -1,20 +1,22 @@
 return {
   "nvimdev/dashboard-nvim",
+  -- enabled = false,
   event = "VimEnter",
   keys = {
     { "<leader>od", "<cmd>Dashboard<cr>", desc = "Open Dashboard" },
   },
   opts = function()
     local logo = [[
-           ▄ ▄                   
-       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     
-       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     
-    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     
-  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  
-  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄
-▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █
-█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █
-    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    
+  ▄▄         ▄ ▄▄▄▄▄▄▄
+▄▀███▄     ▄██ █████▀ 
+██▄▀███▄   ███        
+███  ▀███▄ ███        
+███    ▀██ ███        
+███      ▀ ███        
+▀██ █████▄▀█▀▄██████▄ 
+  ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀
+                      
+  Powered By  eovim 
 ]]
 
     logo = string.rep("\n", 8) .. logo .. "\n\n"
@@ -30,8 +32,8 @@ return {
         center = {
           { action = "Telescope find_files",                                           desc = " Find file",       icon = " ", key = "f" },
           { action = "ene | startinsert",                                              desc = " New file",        icon = " ", key = "n" },
-          { action = "Telescope oldfiles",                                             desc = " Recent files",    icon = " ", key = "t" },
-          { action = "Telescope live_grep",                                            desc = " Find text",       icon = "󰺮 ", key = "r" },
+          -- { action = "Telescope oldfiles",                                             desc = " Recent files",    icon = " ", key = "t" },
+          -- { action = "Telescope live_grep",                                            desc = " Find text",       icon = "󰺮 ", key = "r" },
           { action = 'lua require("session_manager").load_current_dir_session()',      desc = " Restore Session", icon = " ", key = "s" },
           { action = "Lazy",                                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = "Oil --float",                                                    desc = " File Explorer",   icon = " ", key = "n" },

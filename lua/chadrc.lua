@@ -8,12 +8,16 @@ local highlights = require "highlights"
 -- local st = require "statusline"
 
 M.base46 = {
-  theme = "chadracula",
-  theme_toggle = { "chadracula", "chadracula" },
+  theme = "nord",
+  theme_toggle = { "chadracula", "nord" },
 
   hl_add = highlights.add,
   hl_override = highlights.override,
 }
+
+-- M.nvdash = {
+--   load_on_startup = true,
+-- }
 
 M.ui = {
   lsp = {
